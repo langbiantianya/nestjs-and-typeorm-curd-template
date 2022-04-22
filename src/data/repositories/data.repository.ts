@@ -8,20 +8,30 @@ import { Repository } from 'typeorm';
 // @EntityRepository(DataEntity)
 @Injectable()
 export class DataRepository {
-  @InjectRepository(DataEntity)
-  private readonly dataRepo: Repository<DataEntity>;
+  constructor(
+    @InjectRepository(DataEntity)
+    private readonly dataRepo: Repository<DataEntity>,
+  ) {}
 
   async delete(id: number): Promise<void> {
     await this.dataRepo.delete({ pkid: id });
   }
   async saveOrUpdate(data: DataEntity): Promise<boolean> {
-    return false;
+    let flag = false;
+    if (data.pkid) {
+      await this.dataRepo.save(data);
+      flag = true;
+    } else {
+      await this.dataRepo.update({ pkid: data.pkid }, data);
+      flag = true;
+    }
+    return flag;
   }
   async list(): Promise<DataEntity[]> {
-    return null;
+    return await this.dataRepo.find();
   }
   async info(id: number): Promise<DataEntity> {
-    return null;
+    return await this.dataRepo.findOne({ pkid: id });
   }
   async page(page: Page): Promise<JsonPage> {
     return null;
