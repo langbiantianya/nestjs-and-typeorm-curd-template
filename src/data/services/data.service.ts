@@ -8,7 +8,7 @@ export class DataService {
   @InjectRepository(DataRepository)
   private readonly dataRepository: DataRepository;
   getDataList(): JsonData {
-    // return new JsonData('??', true, this.dataRepository.list());
-    return null;
+    return new JsonData('??', true, this.dataRepository.list());
+    // return null;
   }
 }
