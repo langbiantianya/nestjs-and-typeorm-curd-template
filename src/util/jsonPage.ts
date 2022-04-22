@@ -1,13 +1,9 @@
 import { Page } from './page';
 export class JsonPage {
-  constructor(message?: string, code?: boolean, data?: any, pages?: Page) {
-    this.message = message;
-    this.code = code;
-    this.data = data;
-    this.pages = pages;
-  }
-  message: string;
-  code: boolean;
-  data: any;
-  pages: Page;
+  constructor(
+    public message?: string,
+    public code?: boolean,
+    public data?: any,
+    public pages?: Page,
+  ) {}
 }
