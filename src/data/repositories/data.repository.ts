@@ -6,13 +6,15 @@ import { Repository } from 'typeorm';
 import { EntityRepository } from 'typeorm';
 
 @EntityRepository(DataEntity)
-export class DataRepository {
+export class DataRepository extends Repository<DataEntity> {
   constructor(
     @InjectRepository(DataEntity)
     private readonly dataRepo?: Repository<DataEntity>,
-  ) {}
-  async delete(id: number): Promise<void> {
-    await this.dataRepo.delete(id);
+  ) {
+    super();
+  }
+  async deleteByid(id: number): Promise<void> {
+    await this.dataRepo.delete({ pkid: id });
   }
   async saveOrUpdate(data: DataEntity): Promise<boolean> {
     let flag = false;
@@ -20,7 +22,7 @@ export class DataRepository {
       await this.dataRepo.save(data);
       flag = true;
     } else {
-      await this.dataRepo.update(data.pkid, data);
+      await this.dataRepo.update({ pkid: data.pkid }, data);
       flag = true;
     }
     return flag;
@@ -29,7 +31,7 @@ export class DataRepository {
     return await this.dataRepo.find();
   }
   async info(id: number): Promise<DataEntity> {
-    return await this.dataRepo.findOne(id);
+    return await this.dataRepo.findOne({ pkid: id });
   }
   // async page(page: Page): Promise<JsonPage> {
   //   return null;

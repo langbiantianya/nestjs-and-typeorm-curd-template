@@ -8,7 +8,7 @@ import { DataService } from './services/data.service';
 // import { Data } from 'src/entities/data.entity';
 import { dataEnities } from './entities';
 @Module({
-  imports: [TypeOrmModule.forFeature([...dataEnities])],
+  imports: [TypeOrmModule.forFeature([...dataEnities, ...dataRepository])],
   controllers: [DataController],
   providers: [DataService],
 })
