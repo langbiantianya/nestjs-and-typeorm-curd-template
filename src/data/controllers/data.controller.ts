@@ -4,6 +4,7 @@ import {
   Controller,
   Get,
   Post,
+  Inject,
   Body,
   Put,
   Param,
@@ -12,29 +13,29 @@ import {
 
 @Controller('data')
 export class DataController {
-  constructor(private readonly appService: DataService) {}
+  constructor(@Inject(DataService) private readonly dataService: DataService) {}
   @Get('/list')
-  dataList(): JsonData {
-    return this.appService.getDataList();
+  list(): JsonData {
+    return this.dataService.getDataList();
   }
   @Get('/page')
-  dataPage(): JsonData {
+  page(): JsonData {
     return null;
   }
   @Post()
-  dataSave(@Body() jsonData: JsonData): JsonData {
+  save(@Body() jsonData: JsonData): JsonData {
     return jsonData;
   }
   @Put()
-  dataUpdate(@Body() jsonData: JsonData): JsonData {
+  update(@Body() jsonData: JsonData): JsonData {
     return jsonData;
   }
   @Get(':id')
-  dataInfo(@Param() id: number): JsonData {
+  info(@Param('id') id: number): JsonData {
     return new JsonData('1231', true, id);
   }
   @Delete(':ids')
-  delete(@Param() ids: string): string {
+  delete(@Param('ids') ids: number[]): number[] {
     return ids;
   }
 }
