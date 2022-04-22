@@ -1,5 +1,5 @@
-import { DataService } from './data.service';
-import { JsonData } from '../util/jsonData';
+import { DataService } from '../services/data.service';
+import { JsonData } from '../../util/jsonData';
 import { Controller, Get, Post, Body, Put, Param } from '@nestjs/common';
 
 @Controller('data')

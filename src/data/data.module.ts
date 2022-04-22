@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 // import { AppController } from './controllers/app.controller';
 // import { AppService } from './services/app.service';
-import { DataController } from './data.controller';
+import { DataController } from './controllers/data.controllera.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DataService } from './data.service';
+import { DataService } from './services/data.servicea.service';
 // import { Data } from 'src/entities/data.entity';
 import { dataEnities } from 'src/entities';
 @Module({
