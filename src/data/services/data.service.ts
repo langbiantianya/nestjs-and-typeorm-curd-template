@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { JsonData } from 'src/util/jsonData';
-import { DataEntity } from 'src/entities/data.entity';
+import { DataEntity } from '../entities/data.entity';
 @Injectable()
 export class DataService {
   getDataList(): JsonData {
