@@ -1,5 +1,5 @@
 export class JsonData {
   message: string;
-  code: number;
+  code: boolean;
   data: any;
 }

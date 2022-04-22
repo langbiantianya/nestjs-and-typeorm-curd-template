@@ -9,7 +9,7 @@ export class DataService {
     const datas: DataEntity[] = [];
     datas.push(data);
     data.busNm = '1231231';
-    json.code = 1;
+    json.code = true;
     json.message = '12';
     json.data = datas;
     return json;
