@@ -1,6 +1,14 @@
 import { DataService } from '../services/data.service';
 import { JsonData } from '../../util/jsonData';
-import { Controller, Get, Post, Body, Put, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Put,
+  Param,
+  Delete,
+} from '@nestjs/common';
 
 @Controller('data')
 export class DataController {
@@ -22,7 +30,11 @@ export class DataController {
     return jsonData;
   }
   @Get(':id')
-  dataInfo(@Param() pkid: number): number {
-    return pkid;
+  dataInfo(@Param() id: number): JsonData {
+    return new JsonData('1231', true, id);
+  }
+  @Delete(':ids')
+  delete(@Param() ids: string): string {
+    return ids;
   }
 }

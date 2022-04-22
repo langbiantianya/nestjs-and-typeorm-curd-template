@@ -1,3 +1,5 @@
+import { Page } from './../../util/page';
+import { JsonPage } from './../../util/jsonPage';
 import { Injectable } from '@nestjs/common';
 import { DataEntity } from '../entities/data.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -21,7 +23,7 @@ export class DataRepository {
   async info(id: number): Promise<DataEntity> {
     return null;
   }
-  async page(): Promise<DataEntity[]> {
+  async page(page: Page): Promise<JsonPage> {
     return null;
   }
 }
