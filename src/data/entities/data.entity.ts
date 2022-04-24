@@ -11,7 +11,11 @@ export class DataEntity {
   @PrimaryGeneratedColumn({ name: 'PKID' })
   pkid: number;
   @Column({ name: 'CPL_DT' })
+  @CreateDateColumn({ name: 'CPL_DT' })
+  @UpdateDateColumn({ name: 'CPL_DT' })
   cplDt: string;
+  cplDtStart: string;
+  cplDtEnd: string;
   @Column({ name: 'DATA_SRC' })
   dataSrc: string;
   @Column({ name: 'STATUS' })
@@ -34,6 +38,8 @@ export class DataEntity {
   cardId: string;
   @Column({ name: 'TRANS_DT' })
   transDt: string;
+  transDtStart: string;
+  transDtEnd: string;
   @Column({ name: 'TRANS_AT' })
   transAt: number;
   @Column({ name: 'MOBILE_NO' })
@@ -58,4 +64,7 @@ export class DataEntity {
   uptAct: string;
   @Column({ name: 'FLAG' })
   flag: string;
+  // cplTimeRange(index: number): string {
+  //   return this.cplDt.split(',')[index];
+  // }
 }
