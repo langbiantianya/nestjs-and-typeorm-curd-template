@@ -4,4 +4,7 @@ export class JsonData {
     public code?: boolean,
     public data?: any,
   ) {}
+  static success(data?: any): JsonData {
+    return new JsonData('success', true, data);
+  }
 }
