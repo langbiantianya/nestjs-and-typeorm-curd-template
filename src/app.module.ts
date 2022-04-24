@@ -16,6 +16,7 @@ import { DataModule } from './data/data.module';
       password: '123456',
       entities: [...dataEnities],
       database: 'node_js_test',
+      timezone: '+08:00',
     }),
     DataModule,
   ],

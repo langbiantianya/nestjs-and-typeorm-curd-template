@@ -10,7 +10,7 @@ import {
 export class DataEntity {
   @PrimaryGeneratedColumn({ name: 'PKID' })
   pkid: number;
-  @Column({ name: 'CPL_DT' })
+  @Column({ type: 'date', name: 'CPL_DT' })
   // @CreateDateColumn({ name: 'CPL_DT' })
   // @UpdateDateColumn({ name: 'CPL_DT' })
   cplDt: Date;
@@ -36,7 +36,7 @@ export class DataEntity {
   cplUserNm: string;
   @Column({ name: 'CARD_ID' })
   cardId: string;
-  @Column({ name: 'TRANS_DT' })
+  @Column({ type: 'date', name: 'TRANS_DT' })
   transDt: Date;
   transDtStart: Date;
   transDtEnd: Date;
@@ -46,16 +46,16 @@ export class DataEntity {
   mobileNo: string;
   @Column({ name: 'MSDD_RSN' })
   msddRsn: string;
-  @Column({ name: 'CRT_DT' })
-  @CreateDateColumn({ name: 'CRT_DT' })
+  @Column({ type: 'datetime', name: 'CRT_DT' })
+  @CreateDateColumn({ type: 'datetime', name: 'CRT_DT' })
   crtDt: Date;
   @Column({ name: 'CRT_USER_ID' })
   crtUserId: string;
   @Column({ name: 'CRT_USER_NM' })
   crtUserNm: string;
-  @Column({ name: 'UPT_DT' })
-  @CreateDateColumn({ name: 'UPT_DT' })
-  @UpdateDateColumn({ name: 'UPT_DT' })
+  @Column({ type: 'datetime', name: 'UPT_DT' })
+  @CreateDateColumn({ type: 'datetime', name: 'UPT_DT' })
+  @UpdateDateColumn({ type: 'datetime', name: 'UPT_DT' })
   uptDt: Date;
   @Column({ name: 'UPT_USER_ID' })
   uptUserId: string;

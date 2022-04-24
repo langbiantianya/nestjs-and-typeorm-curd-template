@@ -23,12 +23,13 @@ export class DataController {
     // this.dataService.list().then((res) => {});
     return JsonData.success(await this.dataService.list(data));
   }
-  @Get('/page')
+  @Post('/page')
   async page(
     @Query('page') page = 1,
     @Query('size') size = 10,
     @Body() query: DataEntity,
   ): Promise<JsonData> {
+    // console.log(query);
     return JsonData.success(
       new JsonPage(
         new Page(page, size),
