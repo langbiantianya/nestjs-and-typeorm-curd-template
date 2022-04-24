@@ -21,7 +21,7 @@ export class DataController {
   @Get('/list')
   async list(@Body() data: DataEntity): Promise<JsonData> {
     // this.dataService.list().then((res) => {});
-    return new JsonData('', true, await this.dataService.list(data));
+    return JsonData.success(await this.dataService.list(data));
   }
   @Get('/page')
   async page(
@@ -29,9 +29,7 @@ export class DataController {
     @Query('size') size = 10,
     @Body() query: DataEntity,
   ): Promise<JsonData> {
-    return new JsonData(
-      '',
-      true,
+    return JsonData.success(
       new JsonPage(
         new Page(page, size),
         await this.dataService.page(page, size, query),
@@ -41,35 +39,21 @@ export class DataController {
   @Post()
   async save(@Body() data: DataEntity): Promise<JsonData> {
     await this.dataService.saveOrUpdate(data);
-    return new JsonData('', true);
+    return JsonData.success();
   }
   @Put()
   async update(@Body() data: DataEntity): Promise<JsonData> {
     await this.dataService.saveOrUpdate(data);
-    return new JsonData('', true);
+    return JsonData.success();
   }
   @Get(':id')
-  info(@Param('id') id: number): Promise<DataEntity> {
-    return this.dataService.info(id);
+  async info(@Param('id') id: number): Promise<JsonData> {
+    return JsonData.success(await this.dataService.info(id));
   }
   @Delete(':ids')
-  delete(@Param('ids') ids: number[]): number[] {
-    return ids;
+  delete(@Param('ids') ids: string): JsonData {
+    this.dataService.deleteByids(ids.split(','));
+    return JsonData.success();
+    // return ids.split(',');
   }
-
-  // cls<T>(value: Type<T>) {
-  //   const ctx: any = new value();
-
-  //   console.log(Object.keys(ctx));
-
-  //   const prototype = Object.getPrototypeOf(ctx);
-  //   console.log(Reflect.ownKeys(prototype));
-  //   console.log(Object.getOwnPropertyDescriptor(prototype, 'echo'));
-
-  //   console.log(Object.getOwnPropertyDescriptor(prototype, 'info'));
-  // }
 }
-
-// interface Type<T> extends Function {
-//   new (...args: any[]): T;
-// }

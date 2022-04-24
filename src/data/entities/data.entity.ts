@@ -11,11 +11,11 @@ export class DataEntity {
   @PrimaryGeneratedColumn({ name: 'PKID' })
   pkid: number;
   @Column({ name: 'CPL_DT' })
-  @CreateDateColumn({ name: 'CPL_DT' })
-  @UpdateDateColumn({ name: 'CPL_DT' })
-  cplDt: string;
-  cplDtStart: string;
-  cplDtEnd: string;
+  // @CreateDateColumn({ name: 'CPL_DT' })
+  // @UpdateDateColumn({ name: 'CPL_DT' })
+  cplDt: Date;
+  cplDtStart: Date;
+  cplDtEnd: Date;
   @Column({ name: 'DATA_SRC' })
   dataSrc: string;
   @Column({ name: 'STATUS' })
@@ -37,25 +37,26 @@ export class DataEntity {
   @Column({ name: 'CARD_ID' })
   cardId: string;
   @Column({ name: 'TRANS_DT' })
-  transDt: string;
-  transDtStart: string;
-  transDtEnd: string;
+  transDt: Date;
+  transDtStart: Date;
+  transDtEnd: Date;
   @Column({ name: 'TRANS_AT' })
   transAt: number;
   @Column({ name: 'MOBILE_NO' })
   mobileNo: string;
   @Column({ name: 'MSDD_RSN' })
   msddRsn: string;
+  @Column({ name: 'CRT_DT' })
   @CreateDateColumn({ name: 'CRT_DT' })
-  @UpdateDateColumn({ name: 'CRT_DT' })
-  crtDt: string;
+  crtDt: Date;
   @Column({ name: 'CRT_USER_ID' })
   crtUserId: string;
   @Column({ name: 'CRT_USER_NM' })
   crtUserNm: string;
+  @Column({ name: 'UPT_DT' })
   @CreateDateColumn({ name: 'UPT_DT' })
   @UpdateDateColumn({ name: 'UPT_DT' })
-  uptDt: string;
+  uptDt: Date;
   @Column({ name: 'UPT_USER_ID' })
   uptUserId: string;
   @Column({ name: 'UPT_USER_NM' })
