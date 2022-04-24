@@ -1,3 +1,5 @@
+import { async } from 'rxjs';
+import { DataEntity } from '../entities/data.entity';
 import { DataService } from '../services/data.service';
 import { JsonData } from '../../util/jsonData';
 import {
@@ -15,24 +17,27 @@ import {
 export class DataController {
   constructor(@Inject(DataService) private readonly dataService: DataService) {}
   @Get('/list')
-  list(): JsonData {
-    return this.dataService.getDataList();
+  async list(): Promise<JsonData> {
+    // this.dataService.list().then((res) => {});
+    return new JsonData('', true, await this.dataService.list());
   }
   @Get('/page')
   page(): JsonData {
     return null;
   }
   @Post()
-  save(@Body() jsonData: JsonData): JsonData {
-    return jsonData;
+  async save(@Body() data: DataEntity): Promise<JsonData> {
+    await this.dataService.saveOrUpdate(data);
+    return new JsonData('', true);
   }
   @Put()
-  update(@Body() jsonData: JsonData): JsonData {
-    return jsonData;
+  async update(@Body() data: DataEntity): Promise<JsonData> {
+    await this.dataService.saveOrUpdate(data);
+    return new JsonData('', true);
   }
   @Get(':id')
   info(@Param('id') id: number): JsonData {
-    return new JsonData('1231', true, id);
+    return this.info(id);
   }
   @Delete(':ids')
   delete(@Param('ids') ids: number[]): number[] {

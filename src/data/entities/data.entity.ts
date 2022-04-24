@@ -8,54 +8,54 @@ import {
 
 @Entity('CPL_DATA')
 export class DataEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'PKID' })
   pkid: number;
-  @Column()
+  @Column({ name: 'CPL_DT' })
   cplDt: string;
-  @Column()
+  @Column({ name: 'DATA_SRC' })
   dataSrc: string;
-  @Column()
+  @Column({ name: 'STATUS' })
   status: string;
-  @Column()
+  @Column({ name: 'BUS_NM' })
   busNm: string;
-  @Column()
+  @Column({ name: 'MCHNT_NM' })
   mchntNm: string;
-  @Column()
+  @Column({ name: 'MCHNT_CLASS' })
   mchntClass: string;
-  @Column()
+  @Column({ name: 'BUS_TP' })
   busTp: string;
-  @Column()
+  @Column({ name: 'MCHNT_CD' })
   mchntCd: string;
-  @Column()
+  @Column({ name: 'ADD_INF' })
   addInf: string;
-  @Column()
+  @Column({ name: 'CPL_USER_NM' })
   cplUserNm: string;
-  @Column()
+  @Column({ name: 'CARD_ID' })
   cardId: string;
-  @Column()
+  @Column({ name: 'TRANS_DT' })
   transDt: string;
-  @Column()
+  @Column({ name: 'TRANS_AT' })
   transAt: number;
-  @Column()
+  @Column({ name: 'MOBILE_NO' })
   mobileNo: string;
-  @Column()
+  @Column({ name: 'MSDD_RSN' })
   msddRsn: string;
-  @CreateDateColumn()
-  @UpdateDateColumn()
+  @CreateDateColumn({ name: 'CRT_DT' })
+  @UpdateDateColumn({ name: 'CRT_DT' })
   crtDt: string;
-  @Column()
+  @Column({ name: 'CRT_USER_ID' })
   crtUserId: string;
-  @Column()
+  @Column({ name: 'CRT_USER_NM' })
   crtUserNm: string;
-  @CreateDateColumn()
-  @UpdateDateColumn()
+  @CreateDateColumn({ name: 'UPT_DT' })
+  @UpdateDateColumn({ name: 'UPT_DT' })
   uptDt: string;
-  @Column()
+  @Column({ name: 'UPT_USER_ID' })
   uptUserId: string;
-  @Column()
+  @Column({ name: 'UPT_USER_NM' })
   uptUserNm: string;
-  @Column()
+  @Column({ name: 'UPT_ACT' })
   uptAct: string;
-  @Column()
+  @Column({ name: 'FLAG' })
   flag: string;
 }
