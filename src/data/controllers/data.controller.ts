@@ -18,7 +18,7 @@ import {
 @Controller('data')
 export class DataController {
   constructor(@Inject(DataService) private readonly dataService: DataService) {}
-  @Get('/list')
+  @Post('/list')
   async list(@Body() data: DataEntity): Promise<JsonData> {
     // this.dataService.list().then((res) => {});
     return JsonData.success(await this.dataService.list(data));
