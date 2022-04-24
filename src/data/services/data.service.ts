@@ -27,6 +27,7 @@ export class DataService {
     data.uptDt;
     data.uptUserId;
     data.uptUserNm;
+    data.flag = '1';
     if (data.pkid) {
       data.crtDt;
       data.crtUserId;
@@ -42,6 +43,7 @@ export class DataService {
     const data = await this.dataRepository.findOne({ pkid: id });
     // await this.dataRepository.delete({ pkid: id });
     data.uptAct = 'D';
+    data.flag = '0';
     await this.dataRepository.save(data);
   }
   list(query?: DataEntity): Promise<DataEntity[]> {
@@ -61,7 +63,7 @@ export class DataService {
         ...(query.mchntNm && { mchntNm: Like(query.mchntNm) }),
         ...(query.cardId && { cardId: Like(query.cardId) }),
         ...(query.dataSrc && { dataSrc: Like(query.dataSrc) }),
-        uptAct: Not('D'),
+        flag: Not('0'),
       },
       order: {
         pkid: 'DESC',
@@ -92,7 +94,7 @@ export class DataService {
         ...(query.mchntNm && { mchntNm: Like(query.mchntNm) }),
         ...(query.cardId && { cardId: Like(query.cardId) }),
         ...(query.dataSrc && { dataSrc: Like(query.dataSrc) }),
-        uptAct: Not('D'),
+        flag: Not('0'),
       },
       order: {
         pkid: 'DESC',
