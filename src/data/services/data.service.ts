@@ -92,6 +92,7 @@ export class DataService {
         ...(query.mchntNm && { mchntNm: Like(query.mchntNm) }),
         ...(query.cardId && { cardId: Like(query.cardId) }),
         ...(query.dataSrc && { dataSrc: Like(query.dataSrc) }),
+        uptAct: Not('D'),
       },
       order: {
         pkid: 'DESC',
