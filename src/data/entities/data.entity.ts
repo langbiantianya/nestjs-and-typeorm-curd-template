@@ -1,3 +1,4 @@
+import { MchntClassEnum } from './data.entity.enum';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -26,6 +27,7 @@ export class DataEntity {
   mchntNm: string;
   @Column({ name: 'MCHNT_CLASS' })
   mchntClass: string;
+  mchntClassName: string;
   @Column({ name: 'BUS_TP' })
   busTp: string;
   @Column({ name: 'MCHNT_CD' })

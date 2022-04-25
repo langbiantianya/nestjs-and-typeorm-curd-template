@@ -1,3 +1,4 @@
+import { MchntClassEnum } from './../entities/data.entity.enum';
 import { Injectable } from '@nestjs/common';
 import { DataRepository } from '../repositories/data.repository';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -126,7 +127,9 @@ export class DataService implements IDataService {
       skip: (page != 0 ? page - 1 : 0) * size,
       take: size,
     });
-
+    temp.forEach((item) => {
+      item.mchntClassName = MchntClassEnum[item.mchntClass];
+    });
     return temp;
   }
   dateFormat(date: Date, fmt) {
