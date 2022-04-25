@@ -39,11 +39,15 @@ export class DataController {
   }
   @Post()
   async save(@Body() data: DataEntity): Promise<JsonData> {
+    console.log(data);
+
     await this.dataService.saveOrUpdate(data);
     return JsonData.success();
   }
   @Put()
   async update(@Body() data: DataEntity): Promise<JsonData> {
+    console.log(data);
+
     await this.dataService.saveOrUpdate(data);
     return JsonData.success();
   }

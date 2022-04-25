@@ -42,7 +42,7 @@ export class DataEntity {
   transDt: Date;
   transDtStart: Date;
   transDtEnd: Date;
-  @Column({ name: 'TRANS_AT' })
+  @Column({ type: 'double', name: 'TRANS_AT' })
   transAt: number;
   @Column({ name: 'MOBILE_NO' })
   mobileNo: string;
