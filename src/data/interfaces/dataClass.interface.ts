@@ -1,3 +1,5 @@
-// export declare namespace DAtaClass {
-//   interface;
-// }
+import { DataEntity } from '../entities/data.entity';
+
+export interface IDataService {
+  saveOrUpdate(data: DataEntity): Promise<void>;
+}

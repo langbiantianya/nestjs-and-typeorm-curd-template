@@ -1,5 +1,3 @@
-import { Page } from './../../util/page';
-import { JsonPage } from './../../util/jsonPage';
 import { Injectable } from '@nestjs/common';
 import { DataRepository } from '../repositories/data.repository';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,16 +10,14 @@ import {
   MoreThanOrEqual,
   Not,
 } from 'typeorm';
+import { IDataService } from '../interfaces/dataClass.interface';
 // import { async } from 'rxjs';
 
 @Injectable()
-export class DataService {
+export class DataService implements IDataService {
   @InjectRepository(DataRepository)
   private readonly dataRepository: DataRepository;
-  // getDataList(): JsonData {
-  //   return new JsonData('??', true, this.dataRepository.list());
-  //   // return null;
-  // }
+
   async saveOrUpdate(data: DataEntity): Promise<void> {
     const date = new Date();
     data.uptDt = this.dateFormat(date, 'yyyy-MM-dd HH:mm:ss');
