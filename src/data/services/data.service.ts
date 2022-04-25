@@ -69,10 +69,10 @@ export class DataService {
           query.transDtEnd && {
             transDt: Between(query.transDtStart, query.transDtEnd),
           }),
-        ...(query.mchntCd && { mchntCd: Like(query.mchntCd) }),
-        ...(query.mchntNm && { mchntNm: Like(query.mchntNm) }),
-        ...(query.cardId && { cardId: Like(query.cardId) }),
-        ...(query.dataSrc && { dataSrc: Like(query.dataSrc) }),
+        ...(query.mchntCd && { mchntCd: Like(`%${query.mchntCd}%`) }),
+        ...(query.mchntNm && { mchntNm: Like(`%${query.mchntNm}%`) }),
+        ...(query.cardId && { cardId: Like(`%${query.cardId}%`) }),
+        ...(query.dataSrc && { dataSrc: Like(`%${query.dataSrc}%`) }),
         flag: Not('0'),
       },
       order: {
@@ -100,10 +100,10 @@ export class DataService {
           query.transDtEnd && {
             transDt: Between(query.transDtStart, query.transDtEnd),
           }),
-        ...(query.mchntCd && { mchntCd: Like(query.mchntCd) }),
-        ...(query.mchntNm && { mchntNm: Like(query.mchntNm) }),
-        ...(query.cardId && { cardId: Like(query.cardId) }),
-        ...(query.dataSrc && { dataSrc: Like(query.dataSrc) }),
+        ...(query.mchntCd && { mchntCd: Like(`%${query.mchntCd}%`) }),
+        ...(query.mchntNm && { mchntNm: Like(`%${query.mchntNm}%`) }),
+        ...(query.cardId && { cardId: Like(`%${query.cardId}%`) }),
+        ...(query.dataSrc && { dataSrc: Like(`%${query.dataSrc}%`) }),
         flag: Not('0'),
       },
       order: {
