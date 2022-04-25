@@ -48,8 +48,8 @@ export class DataService {
     data.flag = '0';
     await this.dataRepository.save(data);
   }
-  deleteByids(ids: string[]) {
-    ids.forEach((item) => {
+  async deleteByids(ids: string[]): Promise<void> {
+    await ids.forEach((item) => {
       if (item) {
         this.deleteByid(Number(item));
       }

@@ -52,8 +52,8 @@ export class DataController {
     return JsonData.success(await this.dataService.info(id));
   }
   @Delete(':ids')
-  delete(@Param('ids') ids: string): JsonData {
-    this.dataService.deleteByids(ids.split(','));
+  async delete(@Param('ids') ids: string): Promise<JsonData> {
+    await this.dataService.deleteByids(ids.split(','));
     return JsonData.success();
     // return ids.split(',');
   }
