@@ -41,14 +41,21 @@ export class DataService implements IDataService {
     // await this.dataRepository.delete({ pkid: id });
     data.uptAct = 'D';
     data.flag = '0';
-    return await this.dataRepository.save(data);
+    return this.dataRepository.save(data);
   }
-  async deleteByids(ids: string[]): Promise<void> {
-    await ids.forEach((item) => {
-      if (item) {
-        this.deleteByid(Number(item));
-      }
+  async deleteByids(ids: string[]): Promise<DataEntity[]> {
+    const tempData = await this.dataRepository.findByIds(ids);
+    tempData.forEach((item) => {
+      item.uptAct = 'D';
+      item.flag = '0';
     });
+    // console.log(tempData);
+    return await this.dataRepository.save(tempData);
+    // ids.forEach(async (item) => {
+    //   if (item) {
+    //     await this.deleteByid(Number(item));
+    //   }
+    // });
   }
   list(query?: DataEntity): Promise<DataEntity[]> {
     return this.dataRepository.find({
@@ -81,7 +88,7 @@ export class DataService implements IDataService {
   async allPage(size): Promise<number> {
     const temp = await this.dataRepository.count({ where: { flag: Not('0') } });
     // temp % size == 0 ? temp / size :
-    return Math.ceil(temp / size);
+    return Math.ceil(temp / size) == 0 ? 1 : Math.ceil(temp / size);
   }
   info(id: number): Promise<DataEntity> {
     return this.dataRepository.findOne({ pkid: id });
