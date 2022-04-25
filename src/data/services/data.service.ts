@@ -58,16 +58,20 @@ export class DataService {
   list(query?: DataEntity): Promise<DataEntity[]> {
     return this.dataRepository.find({
       where: {
-        ...(query.cplDtStart &&
+        ...((query.cplDtStart &&
           query.cplDtEnd && {
             cplDt: Between(query.cplDtStart, query.cplDtEnd),
-          }),
-        ...(query.cplDtStart && { cplDt: MoreThanOrEqual(query.cplDtStart) }),
-        ...(query.cplDtEnd && { cplDt: LessThanOrEqual(query.cplDtEnd) }),
-        ...(query.transDtStart &&
+          }) ||
+          (query.cplDtStart && { cplDt: MoreThanOrEqual(query.cplDtStart) }) ||
+          (query.cplDtEnd && { cplDt: LessThanOrEqual(query.cplDtEnd) })),
+        ...((query.transDtStart &&
           query.transDtEnd && {
             transDt: Between(query.transDtStart, query.transDtEnd),
-          }),
+          }) ||
+          (query.transDtStart && {
+            transDt: MoreThanOrEqual(query.transDtStart),
+          }) ||
+          (query.transDtEnd && { transDt: LessThan(query.transDtEnd) })),
         ...(query.mchntCd && { mchntCd: Like(`%${query.mchntCd}%`) }),
         ...(query.mchntNm && { mchntNm: Like(`%${query.mchntNm}%`) }),
         ...(query.cardId && { cardId: Like(`%${query.cardId}%`) }),
@@ -89,16 +93,20 @@ export class DataService {
   ): Promise<DataEntity[]> {
     const temp = await this.dataRepository.find({
       where: {
-        ...(query.cplDtStart &&
+        ...((query.cplDtStart &&
           query.cplDtEnd && {
             cplDt: Between(query.cplDtStart, query.cplDtEnd),
-          }),
-        ...(query.cplDtStart && { cplDt: MoreThanOrEqual(query.cplDtStart) }),
-        ...(query.cplDtEnd && { cplDt: LessThanOrEqual(query.cplDtEnd) }),
-        ...(query.transDtStart &&
+          }) ||
+          (query.cplDtStart && { cplDt: MoreThanOrEqual(query.cplDtStart) }) ||
+          (query.cplDtEnd && { cplDt: LessThanOrEqual(query.cplDtEnd) })),
+        ...((query.transDtStart &&
           query.transDtEnd && {
             transDt: Between(query.transDtStart, query.transDtEnd),
-          }),
+          }) ||
+          (query.transDtStart && {
+            transDt: MoreThanOrEqual(query.transDtStart),
+          }) ||
+          (query.transDtEnd && { transDt: LessThan(query.transDtEnd) })),
         ...(query.mchntCd && { mchntCd: Like(`%${query.mchntCd}%`) }),
         ...(query.mchntNm && { mchntNm: Like(`%${query.mchntNm}%`) }),
         ...(query.cardId && { cardId: Like(`%${query.cardId}%`) }),
