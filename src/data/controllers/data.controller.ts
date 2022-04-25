@@ -32,7 +32,7 @@ export class DataController {
     // console.log(query);
     return JsonData.success(
       new JsonPage(
-        new Page(page, size),
+        new Page(page, size, await this.dataService.allPage(size)),
         await this.dataService.page(page, size, query),
       ),
     );

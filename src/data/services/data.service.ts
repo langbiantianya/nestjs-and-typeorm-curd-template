@@ -9,7 +9,6 @@ import {
   LessThan,
   LessThanOrEqual,
   Like,
-  MoreThan,
   MoreThanOrEqual,
   Not,
 } from 'typeorm';
@@ -82,6 +81,9 @@ export class DataService {
         pkid: 'ASC',
       },
     });
+  }
+  async allPage(size): Promise<number> {
+    return Math.ceil((await this.dataRepository.count()) / size);
   }
   info(id: number): Promise<DataEntity> {
     return this.dataRepository.findOne({ pkid: id });
