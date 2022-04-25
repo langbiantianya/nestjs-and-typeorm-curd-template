@@ -41,19 +41,20 @@ export class DataService {
       await this.dataRepository.update({ pkid: data.pkid }, data);
     }
   }
-  async deleteByid(id: number): Promise<void> {
+  async deleteByid(id: number): Promise<DataEntity> {
     const data = await this.dataRepository.findOne({ pkid: id });
     // await this.dataRepository.delete({ pkid: id });
     data.uptAct = 'D';
     data.flag = '0';
-    await this.dataRepository.save(data);
+    return await this.dataRepository.save(data);
   }
-  async deleteByids(ids: string[]): Promise<void> {
+  async deleteByids(ids: string[]): Promise<boolean> {
     await ids.forEach((item) => {
       if (item) {
         this.deleteByid(Number(item));
       }
     });
+    return true;
   }
   list(query?: DataEntity): Promise<DataEntity[]> {
     return this.dataRepository.find({
