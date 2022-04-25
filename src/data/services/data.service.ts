@@ -79,7 +79,9 @@ export class DataService implements IDataService {
     });
   }
   async allPage(size): Promise<number> {
-    return Math.ceil((await this.dataRepository.count()) / size);
+    const temp = await this.dataRepository.count();
+    // temp % size == 0 ? temp / size :
+    return Math.ceil(temp / size) - 1;
   }
   info(id: number): Promise<DataEntity> {
     return this.dataRepository.findOne({ pkid: id });
